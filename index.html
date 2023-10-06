@@ -52,5 +52,10 @@
             document.getElementById(e.target.dataset.reload).src += "";
         });
     });
+    document.querySelectorAll("iframe").forEach((i)=>{
+        const style = i.contentWindow.document.createElement(style);
+        style.textContent = `*{max-width:100%;}`;
+        i.contentWindow.document.querySelector("head").appendChild(style);
+    });
 </script>
 </html>
