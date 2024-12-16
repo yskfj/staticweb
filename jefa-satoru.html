@@ -12,6 +12,16 @@
         }
         a {
             display: block;
+            text-decoration: none;
+        }
+        a::after {
+            display: inline-block;
+            content:"";
+            background-image: url(img/movie.jpeg);
+            width: 1em;
+            height: 1em;
+            transform: translateY(2px);
+            margin-left: .25em;
         }
     </style>
 </head>
