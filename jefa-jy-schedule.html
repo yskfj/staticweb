@@ -31,21 +31,18 @@
         }
         .calendar-section a,
         .copy-btn {
-            text-decoration: none;
+            text-decoration: underline;
             color: #0066cc;
             background: none;
-            border: 1px solid #0066cc;
-            border-radius: 6px;
-            padding: 6px 14px;
+            border: none;
+            padding: 0;
             cursor: pointer;
             font-size: inherit;
             font-family: inherit;
-            display: inline-block;
         }
         .calendar-section a:hover,
         .copy-btn:hover {
-            background: #0066cc;
-            color: #fff;
+            color: #004499;
         }
         .copied {
             border-color: #28a745;
@@ -85,11 +82,10 @@
             },
             {
                 title: 'Android（Google カレンダー）購読',
-                note: '※ Google アカウントへのログインが求められます。追加先のアカウントを確認してから登録してください。カレンダーが反映されるまで数時間かかる場合があります。',
+                note: '※ 各リンクをタップして URL をコピー → <a href="https://calendar.google.com/calendar/r/settings/addbyurl" target="_blank" rel="noopener">Google カレンダー「URL で追加」画面</a>に貼り付けて登録してください。Google カレンダーアプリからは追加できないため、ブラウザでの操作が必要です。反映まで数時間かかる場合があります。',
                 linkFn: function(cal) {
-                    var webcalUrl = (BASE_URL + cal.id + '.ics');
-                    var url = 'https://calendar.google.com/calendar/r?cid=' + encodeURIComponent(webcalUrl);
-                    return '<a href="' + url + '" target="_blank" rel="noopener">' + cal.label + '</a>';
+                    var url = BASE_URL + cal.id + '.ics';
+                    return '<a href="javascript:void(0)" class="copy-btn" data-url="' + url + '">' + cal.label + '</a>';
                 }
             },
             {
