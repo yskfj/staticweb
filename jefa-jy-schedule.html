@@ -62,7 +62,7 @@
     <div id="calendars"></div>
 
     <script>
-        const BASE_URL = 'https://yskfj.github.io/staticweb/ical/';
+        const BASE_URL = 'webcal://yskfj.github.io/staticweb/ical/';
         const calendars = [
             { id: 'u13', label: 'U13' },
             { id: 'u14', label: 'U14' },
@@ -82,17 +82,17 @@
             },
             {
                 title: 'Android（Google カレンダー）購読',
-                note: '※ 各リンクをタップして URL をコピー → <a href="https://calendar.google.com/calendar/r/settings/addbyurl" target="_blank" rel="noopener">Google カレンダー「URL で追加」画面</a>に貼り付けて登録してください。Google カレンダーアプリからは追加できないため、ブラウザでの操作が必要です。反映まで数時間かかる場合があります。',
                 linkFn: function(cal) {
-                    var url = BASE_URL + cal.id + '.ics';
-                    return '<a href="javascript:void(0)" class="copy-btn" data-url="' + url + '">' + cal.label + '</a>';
+                    var url = 'https://calendar.google.com/calendar/r?cid=' + encodeURIComponent(BASE_URL + cal.id + '.ics');
+                    return '<a href="' + url + '" target="_blank" rel="noopener">' + cal.label + '</a>';
                 }
             },
             {
-                title: '他のカレンダー用（ics リンクをコピー）',
+                title: '手動で購読する',
+                note: '※ PCでカレンダーアプリや Google カレンダーを開き「外部カレンダーを追加」や「購読」からコピーした URL を貼り付けてください。',
                 linkFn: function(cal) {
                     var url = BASE_URL + cal.id + '.ics';
-                    return '<button class="copy-btn" data-url="' + url + '">' + cal.label + '</button>';
+                    return '<a href="javascript:void(0)" class="copy-btn" data-url="' + url + '">' + cal.label + '</a>';
                 }
             }
         ];
