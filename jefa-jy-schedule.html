@@ -57,7 +57,6 @@
 </head>
 <body>
     <h1>JeFa JY Schedule</h1>
-    ver 2
     <hr>
     <div id="calendars"></div>
 
@@ -81,18 +80,19 @@
                 }
             },
             {
-                title: 'Android（Google カレンダー）購読',
-                linkFn: function(cal) {
-                    var url = 'https://calendar.google.com/calendar/r?cid=' + encodeURIComponent(BASE_URL + cal.id + '.ics');
-                    return '<a href="' + url + '" target="_blank" rel="noopener">' + cal.label + '</a>';
-                }
-            },
-            {
-                title: '手動で購読する',
+                title: '手動で購読する（icsリンクをコピー）',
                 note: '※ PCでカレンダーアプリや Google カレンダーを開き「外部カレンダーを追加」や「購読」からコピーした URL を貼り付けてください。',
                 linkFn: function(cal) {
                     var url = BASE_URL + cal.id + '.ics';
                     return '<a href="javascript:void(0)" class="copy-btn" data-url="' + url + '">' + cal.label + '</a>';
+                }
+            },
+            {
+                title: 'Google カレンダー購読リンク（非推奨）',
+                note: '※ Android設定→アプリ→（全てのアプリを表示）→カレンダー→デフォルトを開く<br>　　「対応リンクを開く」をOFFにした状態で以下リンクを開くとスマホでも登録できるっぽい<br>　　作業後に設定を戻すこと',
+                linkFn: function(cal) {
+                    var url = 'https://calendar.google.com/calendar/r?cid=' + encodeURIComponent(BASE_URL + cal.id + '.ics');
+                    return '<a href="' + url + '" target="_blank" rel="noopener">' + cal.label + '</a>';
                 }
             }
         ];
