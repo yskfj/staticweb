@@ -78,7 +78,7 @@
             {
                 title: 'iPhone（iOS）購読',
                 linkFn: function(cal) {
-                    var url = (BASE_URL + cal.id + '.ics').replace('https://', 'webcal://');
+                    var url = (BASE_URL + cal.id + '.ics');
                     return '<a href="' + url + '">' + cal.label + '</a>';
                 }
             },
@@ -86,7 +86,7 @@
                 title: 'Android（Google カレンダー）購読',
                 note: '※ Google アカウントへのログインが求められます。追加先のアカウントを確認してから登録してください。カレンダーが反映されるまで数時間かかる場合があります。',
                 linkFn: function(cal) {
-                    var webcalUrl = (BASE_URL + cal.id + '.ics').replace('https://', 'webcal://');
+                    var webcalUrl = (BASE_URL + cal.id + '.ics');
                     var url = 'https://calendar.google.com/calendar/r?cid=' + encodeURIComponent(webcalUrl);
                     return '<a href="' + url + '" target="_blank" rel="noopener">' + cal.label + '</a>';
                 }
