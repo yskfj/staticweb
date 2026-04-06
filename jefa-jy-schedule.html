@@ -25,31 +25,36 @@
             list-style: none;
             padding: 0;
             margin: 0;
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
         }
-        .calendar-section li {
-            margin-bottom: 6px;
-        }
-        .calendar-section a {
+        .calendar-section a,
+        .copy-btn {
             text-decoration: none;
             color: #0066cc;
-        }
-        .calendar-section a:hover {
-            text-decoration: underline;
-        }
-        .copy-btn {
             background: none;
-            border: none;
-            color: #0066cc;
+            border: 1px solid #0066cc;
+            border-radius: 6px;
+            padding: 6px 14px;
             cursor: pointer;
             font-size: inherit;
-            padding: 0;
             font-family: inherit;
+            display: inline-block;
         }
+        .calendar-section a:hover,
         .copy-btn:hover {
-            text-decoration: underline;
+            background: #0066cc;
+            color: #fff;
         }
         .copied {
+            border-color: #28a745;
             color: #28a745;
+        }
+        .note {
+            font-size: 0.85em;
+            color: #666;
+            margin-top: 4px;
         }
     </style>
 </head>
@@ -79,6 +84,7 @@
             },
             {
                 title: 'Android（Google カレンダー）購読',
+                note: '※ Google アカウントへのログインが求められます。追加先のアカウントを確認してから登録してください。カレンダーが反映されるまで数時間かかる場合があります。',
                 linkFn: function(cal) {
                     var webcalUrl = (BASE_URL + cal.id + '.ics').replace('https://', 'webcal://');
                     var url = 'https://calendar.google.com/calendar/r?cid=' + encodeURIComponent(webcalUrl);
@@ -100,7 +106,8 @@
             var items = calendars.map(function(cal) {
                 return '<li>' + cat.linkFn(cal) + '</li>';
             }).join('');
-            section.innerHTML = '<h2>' + cat.title + '</h2><ul>' + items + '</ul>';
+            var noteHtml = cat.note ? '<p class="note">' + cat.note + '</p>' : '';
+            section.innerHTML = '<h2>' + cat.title + '</h2>' + noteHtml + '<ul>' + items + '</ul>';
             container.appendChild(section);
         });
 
