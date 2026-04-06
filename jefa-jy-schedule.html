@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JeFa JY Schedule</title>
+    <style>
+        body {
+            line-height: 1.75;
+            font-family: sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 16px;
+        }
+        .calendar-section {
+            margin-bottom: 24px;
+        }
+        .calendar-section h2 {
+            margin-bottom: 8px;
+        }
+        .calendar-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .calendar-section li {
+            margin-bottom: 6px;
+        }
+        .calendar-section a {
+            text-decoration: none;
+            color: #0066cc;
+        }
+        .calendar-section a:hover {
+            text-decoration: underline;
+        }
+        .copy-btn {
+            background: none;
+            border: none;
+            color: #0066cc;
+            cursor: pointer;
+            font-size: inherit;
+            padding: 0;
+            font-family: inherit;
+        }
+        .copy-btn:hover {
+            text-decoration: underline;
+        }
+        .copied {
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <h1>JeFa JY Schedule</h1>
+    <hr>
+    <div id="calendars"></div>
+
+    <script>
+        const BASE_URL = 'https://yskfj.github.io/staticweb/ical/';
+        const calendars = [
+            { id: 'u13', label: 'U-13' },
+            { id: 'u14', label: 'U-14' },
+            { id: 't2',  label: 'T2' },
+            { id: 'u15', label: 'U-15' },
+        ];
+
+        const container = document.getElementById('calendars');
+
+        const categories = [
+            {
+                title: 'iPhone（iOS）購読',
+                linkFn: function(cal) {
+                    var url = (BASE_URL + cal.id + '.ics').replace('https://', 'webcal://');
+                    return '<a href="' + url + '">' + cal.label + '</a>';
+                }
+            },
+            {
+                title: 'Android（Google カレンダー）購読',
+                linkFn: function(cal) {
+                    var webcalUrl = (BASE_URL + cal.id + '.ics').replace('https://', 'webcal://');
+                    var url = 'https://calendar.google.com/calendar/r?cid=' + encodeURIComponent(webcalUrl);
+                    return '<a href="' + url + '" target="_blank" rel="noopener">' + cal.label + '</a>';
+                }
+            },
+            {
+                title: '他のカレンダー用（ics リンクをコピー）',
+                linkFn: function(cal) {
+                    var url = BASE_URL + cal.id + '.ics';
+                    return '<button class="copy-btn" data-url="' + url + '">' + cal.label + '</button>';
+                }
+            }
+        ];
+
+        categories.forEach(function(cat) {
+            var section = document.createElement('div');
+            section.className = 'calendar-section';
+            var items = calendars.map(function(cal) {
+                return '<li>' + cat.linkFn(cal) + '</li>';
+            }).join('');
+            section.innerHTML = '<h2>' + cat.title + '</h2><ul>' + items + '</ul>';
+            container.appendChild(section);
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!e.target.classList.contains('copy-btn')) return;
+            var url = e.target.getAttribute('data-url');
+            var btn = e.target;
+            var originalText = btn.textContent;
+            navigator.clipboard.writeText(url).then(function() {
+                btn.textContent = originalText + ' - コピーしました!';
+                btn.classList.add('copied');
+                setTimeout(function() {
+                    btn.textContent = originalText;
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>
