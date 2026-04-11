@@ -18,7 +18,7 @@
         a {
             text-decoration: none;
         }
-        a::after {
+        a.youtube::after {
             display: inline-block;
             content:"";
             background-image: url(img/movie.jpeg);
@@ -33,6 +33,15 @@
         s {
             opacity: .5;
         }
+        .buttons {
+            display: flex;
+            gap:1em;
+        }
+        .button {
+            background-color: #efefef;
+            border: 1px solid #ccc;
+            padding: .5em 1em;
+        }
     </style>
 </head>
 <body>
@@ -41,8 +50,20 @@
     <h3>2025-09</h3>
     <a href="">2025-09-07 ヴィルトゥス</a><br>
     -->
-    <hr>
     <h3>2026-04</h3>
+    <a class="youtube" href="https://www.youtube.com/playlist?list=PLvHsU3hBzocZ5KN4EM6q5GXsEvNu__Ly3">2026-04-11 U13 ラーナーズ</a><br>
+
+    <hr>
+    <p>
+        iPhoneの人は以下リンクから標準カレンダーにスケジュール登録できます<br>
+        Androidの人はダメですやらないでください
+    </p>
+    <div class="buttons">
+        <a class="button" href="webcal://calendar.google.com/calendar/ical/a02fe61e67e9339a194b3e2ee158a26681629474c17d06a9f91eadb5b446a762%40group.calendar.google.com/private-949c93a9eaf03f7f7e5fa510cde73ec3/basic.ics">U13</a>
+        <a class="button" href="webcal://calendar.google.com/calendar/ical/3c86305fb2b9b7c5a5401febd7904591d3a84518c31693249b61fab5eddc7b7e%40group.calendar.google.com/private-29617bddf56011dbf16a0f8c7a061ae5/basic.ics">U14</a>
+        <a class="button" href="webcal://calendar.google.com/calendar/ical/97807a064b45117680d2633be10108323fb566f1eef761bf7c3e2762b609b605%40group.calendar.google.com/private-bc8c312119e56cb4b95def554735d6e6/basic.ics">T2</a>
+        <a class="button" href="webcal://calendar.google.com/calendar/ical/c3b5d56e60018f8fa73a3810ce9a95be590f466788116b52a4ba50b22f011e5b%40group.calendar.google.com/private-a4c4d73ecf5524eed66cc5f88ff4c9cb/basic.ics">U15</a>
+    </div>
 
 </body>
-</html>    <a href="https://www.youtube.com/playlist?list=PLvHsU3hBzocZ5KN4EM6q5GXsEvNu__Ly3">2026-04-11 U13 ラーナーズ</a><br>
+</html>    
